@@ -89,7 +89,7 @@ type MovieDatedResults struct {
 	TotalResults int          `json:"totalResults"`
 }
 
-// MoviePagedResults struct
+// MoviePagedResults struct 
 type MoviePagedResults struct {
 	ID                int                    `json:"id"`
 	Page              int                    `json:"page"`
