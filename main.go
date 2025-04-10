@@ -3,10 +3,12 @@ package tmdb
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"time"
+
+	"github.com/catadoo/go-tmdb/internal/conv"
 )
 
 const baseURL string = "https://api.themoviedb.org/3"
@@ -66,6 +68,7 @@ func Init(config Config) *TMDb {
 	return &TMDb{apiKey: config.APIKey}
 }
 
+// DON'T USE THIS FUNCTION FOR CONVERTING TO JSON
 // ToJSON converts from struct to JSON
 func ToJSON(payload interface{}) (string, error) {
 	jsonRes := []byte("{}") // Default value in case of error
@@ -102,23 +105,25 @@ func getTmdb(url string, payload interface{}) (interface{}, error) {
 
 	defer res.Body.Close() // Clean up
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil { // Failed to read body
 		return payload, err
 	}
 
 	if res.StatusCode >= 200 && res.StatusCode < 300 { // Success!
-		json.Unmarshal(body, &payload)
-		return payload, nil
+		err = conv.SnakeJsonToCamelStruct(body, &payload)
+		//json.Unmarshal(body, &payload)
+		return payload, err
 	}
 
 	// Handle failure modes
 	var status apiStatus
-	err = json.Unmarshal(body, &status)
+	err = conv.SnakeJsonToCamelStruct(body, &payload)
+	//err = json.Unmarshal(body, &status)
 	if err != nil {
 		return payload, err
 	}
-	return payload, fmt.Errorf("Code (%d): %s", status.Code, status.Message)
+	return payload, fmt.Errorf("code (%d): %s", status.Code, status.Message)
 }
 
 func getOptionsString(options map[string]string, availableOptions map[string]struct{}) string {

@@ -6,402 +6,402 @@ import (
 
 // Movie struct
 type Movie struct {
-	Adult        bool
-	BackdropPath string `json:"backdrop_path"`
-	// BelongsToCollection bool   `json:"belongs_to_collection"`
-	BelongsToCollection CollectionShort `json:"belongs_to_collection"`
-	Budget              uint32
-	Genres              []struct {
-		ID   int
-		Name string
-	}
-	Homepage            string
-	ID                  int
-	ImdbID              string `json:"imdb_id"`
-	OriginalLanguage    string `json:"original_language"`
-	OriginalTitle       string `json:"original_title"`
-	Overview            string
-	Popularity          float32
-	PosterPath          string `json:"poster_path"`
+	Adult                bool                   `json:"adult"`
+	BackdropPath         string                 `json:"backdropPath"`
+	BelongsToCollection  CollectionShort        `json:"belongsToCollection"`
+	Budget               uint32                 `json:"budget"`
+	Genres               []struct {
+		ID   int    `json:"id"`
+		Name string `json:"name"`
+	} `json:"genres"`
+	Homepage            string                 `json:"homepage"`
+	ID                  int                    `json:"id"`
+	ImdbID              string                 `json:"imdbId"`
+	OriginalLanguage    string                 `json:"originalLanguage"`
+	OriginalTitle       string                 `json:"originalTitle"`
+	Overview            string                 `json:"overview"`
+	Popularity          float32                `json:"popularity"`
+	PosterPath          string                 `json:"posterPath"`
 	ProductionCompanies []struct {
-		ID        int
-		Name      string
-		LogoPath  string `json:"logo_path"`
-		Iso3166_1 string `json:"origin_country"`
-	} `json:"production_companies"`
+		ID        int    `json:"id"`
+		Name      string `json:"name"`
+		LogoPath  string `json:"logoPath"`
+		Iso3166_1 string `json:"iso31661"`
+	} `json:"productionCompanies"`
 	ProductionCountries []struct {
-		Iso3166_1 string `json:"iso_3166_1"`
-		Name      string
-	} `json:"production_countries"`
-	ReleaseDate     string `json:"release_date"`
-	Revenue         uint32
-	Runtime         uint32
+		Iso3166_1 string `json:"iso31661"`
+		Name      string `json:"name"`
+	} `json:"productionCountries"`
+	ReleaseDate     string `json:"releaseDate"`
+	Revenue         uint32 `json:"revenue"`
+	Runtime         uint32 `json:"runtime"`
 	SpokenLanguages []struct {
-		Iso639_1 string `json:"iso_639_1"`
-		Name     string
-	} `json:"spoken_languages"`
-	Status            string
-	Tagline           string
-	Title             string
-	Video             bool
-	VoteAverage       float32                 `json:"vote_average"`
-	VoteCount         uint32                  `json:"vote_count"`
-	AlternativeTitles *MovieAlternativeTitles `json:"alternative_titles,omitempty"`
-	Credits           *MovieCredits           `json:",omitempty"`
-	Images            *MovieImages            `json:",omitempty"`
-	Keywords          *MovieKeywords          `json:",omitempty"`
-	Releases          *MovieReleases          `json:",omitempty"`
-	Videos            *MovieVideos            `json:",omitempty"`
-	Translations      *MovieTranslations      `json:",omitempty"`
-	Similar           *MoviePagedResults      `json:",omitempty"`
-	Reviews           *MovieReviews           `json:",omitempty"`
-	Lists             *MovieLists             `json:",omitempty"`
-	Changes           *MovieChanges           `json:",omitempty"`
-	Rating            *MovieRating            `json:",omitempty"`
-	ExternalIDs       *MovieExternalIds       `json:"external_ids,omitempty"`
+		Iso639_1 string `json:"iso6391"`
+		Name     string `json:"name"`
+	} `json:"spokenLanguages"`
+	Status            string                `json:"status"`
+	Tagline           string                `json:"tagline"`
+	Title             string                `json:"title"`
+	Video             bool                  `json:"video"`
+	VoteAverage       float32               `json:"voteAverage"`
+	VoteCount         uint32                `json:"voteCount"`
+	AlternativeTitles *MovieAlternativeTitles `json:"alternativeTitles,omitempty"`
+	Credits           *MovieCredits           `json:"credits,omitempty"`
+	Images            *MovieImages            `json:"images,omitempty"`
+	Keywords          *MovieKeywords          `json:"keywords,omitempty"`
+	Releases          *MovieReleases          `json:"releases,omitempty"`
+	Videos            *MovieVideos            `json:"videos,omitempty"`
+	Translations      *MovieTranslations      `json:"translations,omitempty"`
+	Similar           *MoviePagedResults      `json:"similar,omitempty"`
+	Reviews           *MovieReviews           `json:"reviews,omitempty"`
+	Lists             *MovieLists             `json:"lists,omitempty"`
+	Changes           *MovieChanges           `json:"changes,omitempty"`
+	Rating            *MovieRating            `json:"rating,omitempty"`
+	ExternalIDs       *MovieExternalIds       `json:"externalIds,omitempty"`
 }
 
 // MovieShort struct
 type MovieShort struct {
 	Adult         bool    `json:"adult"`
-	BackdropPath  string  `json:"backdrop_path"`
+	BackdropPath  string  `json:"backdropPath"`
 	ID            int     `json:"id"`
-	OriginalTitle string  `json:"original_title"`
-	GenreIDs      []int32 `json:"genre_ids"`
+	OriginalTitle string  `json:"originalTitle"`
+	GenreIDs      []int32 `json:"genreIds"`
 	Popularity    float32 `json:"popularity"`
-	PosterPath    string  `json:"poster_path"`
-	ReleaseDate   string  `json:"release_date"`
+	PosterPath    string  `json:"posterPath"`
+	ReleaseDate   string  `json:"releaseDate"`
 	Title         string  `json:"title"`
 	Overview      string  `json:"overview"`
 	Video         bool    `json:"video"`
-	VoteAverage   float32 `json:"vote_average"`
-	VoteCount     uint32  `json:"vote_count"`
+	VoteAverage   float32 `json:"voteAverage"`
+	VoteCount     uint32  `json:"voteCount"`
 }
 
 // MovieDatedResults struct
 type MovieDatedResults struct {
 	Dates struct {
-		Minimum string
-		Maximum string
-	}
-	Page         int
-	Results      []MovieShort
-	TotalPages   int `json:"total_pages"`
-	TotalResults int `json:"total_results"`
+		Minimum string `json:"minimum"`
+		Maximum string `json:"maximum"`
+	} `json:"dates"`
+	Page         int          `json:"page"`
+	Results      []MovieShort `json:"results"`
+	TotalPages   int          `json:"totalPages"`
+	TotalResults int          `json:"totalResults"`
 }
 
 // MoviePagedResults struct
 type MoviePagedResults struct {
-	ID                int
-	Page              int
-	Results           []MovieShort
-	TotalPages        int                     `json:"total_pages"`
-	TotalResults      int                     `json:"total_results"`
-	AlternativeTitles *MovieAlternativeTitles `json:"alternative_titles,omitempty"`
-	Credits           *MovieCredits           `json:",omitempty"`
-	Images            *MovieImages            `json:",omitempty"`
-	Keywords          *MovieKeywords          `json:",omitempty"`
-	Releases          *MovieReleases          `json:",omitempty"`
-	Videos            *MovieVideos            `json:",omitempty"`
-	Translations      *MovieTranslations      `json:",omitempty"`
-	Similar           *MoviePagedResults      `json:",omitempty"`
-	Reviews           *MovieReviews           `json:",omitempty"`
-	Lists             *MovieLists             `json:",omitempty"`
-	Changes           *MovieChanges           `json:",omitempty"`
-	Rating            *MovieRating            `json:",omitempty"`
+	ID                int                    `json:"id"`
+	Page              int                    `json:"page"`
+	Results           []MovieShort           `json:"results"`
+	TotalPages        int                    `json:"totalPages"`
+	TotalResults      int                    `json:"totalResults"`
+	AlternativeTitles *MovieAlternativeTitles `json:"alternativeTitles,omitempty"`
+	Credits           *MovieCredits           `json:"credits,omitempty"`
+	Images            *MovieImages            `json:"images,omitempty"`
+	Keywords          *MovieKeywords          `json:"keywords,omitempty"`
+	Releases          *MovieReleases          `json:"releases,omitempty"`
+	Videos            *MovieVideos            `json:"videos,omitempty"`
+	Translations      *MovieTranslations      `json:"translations,omitempty"`
+	Similar           *MoviePagedResults      `json:"similar,omitempty"`
+	Reviews           *MovieReviews           `json:"reviews,omitempty"`
+	Lists             *MovieLists             `json:"lists,omitempty"`
+	Changes           *MovieChanges           `json:"changes,omitempty"`
+	Rating            *MovieRating            `json:"rating,omitempty"`
 }
 
 // MovieAccountState struct
 type MovieAccountState struct {
-	ID        int
-	Favorite  bool
-	Watchlist bool
-	Rated     struct {
-		Value float32
-	}
+	ID        int `json:"id"`
+	Favorite  bool `json:"favorite"`
+	Watchlist bool `json:"watchlist"`
+	Rated struct {
+		Value float32 `json:"value"`
+	} `json:"rated"`
 }
 
 // MovieAlternativeTitles struct
 type MovieAlternativeTitles struct {
-	ID     int
+	ID     int `json:"id"`
 	Titles []struct {
-		Iso3166_1 string `json:"iso_3166_1"`
-		Title     string
-	}
-	AccountStates *MovieAccountState `json:"account_states,omitempty"`
-	Credits       *MovieCredits      `json:",omitempty"`
-	Images        *MovieImages       `json:",omitempty"`
-	Keywords      *MovieKeywords     `json:",omitempty"`
-	Releases      *MovieReleases     `json:",omitempty"`
-	Videos        *MovieVideos       `json:",omitempty"`
-	Translations  *MovieTranslations `json:",omitempty"`
-	Similar       *MoviePagedResults `json:",omitempty"`
-	Reviews       *MovieReviews      `json:",omitempty"`
-	Lists         *MovieLists        `json:",omitempty"`
-	Changes       *MovieChanges      `json:",omitempty"`
-	Rating        *MovieRating       `json:",omitempty"`
+		Iso3166_1 string `json:"iso31661"`
+		Title     string `json:"title"`
+	} `json:"titles"`
+	AccountStates *MovieAccountState `json:"accountStates,omitempty"`
+	Credits       *MovieCredits      `json:"credits,omitempty"`
+	Images        *MovieImages       `json:"images,omitempty"`
+	Keywords      *MovieKeywords     `json:"keywords,omitempty"`
+	Releases      *MovieReleases     `json:"releases,omitempty"`
+	Videos        *MovieVideos       `json:"videos,omitempty"`
+	Translations  *MovieTranslations `json:"translations,omitempty"`
+	Similar       *MoviePagedResults `json:"similar,omitempty"`
+	Reviews       *MovieReviews      `json:"reviews,omitempty"`
+	Lists         *MovieLists        `json:"lists,omitempty"`
+	Changes       *MovieChanges      `json:"changes,omitempty"`
+	Rating        *MovieRating       `json:"rating,omitempty"`
 }
 
 // MovieChanges struct
 type MovieChanges struct {
 	Changes []struct {
-		Key   string
+		Key   string `json:"key"`
 		Items []struct {
-			ID     string
-			Action string
-			Time   string
-		}
-	}
+			ID     string `json:"id"`
+			Action string `json:"action"`
+			Time   string `json:"time"`
+		} `json:"items"`
+	} `json:"changes"`
 }
 
 // MovieCredits struct
 type MovieCredits struct {
-	ID   int
+	ID   int `json:"id"`
 	Cast []struct {
-		CastID      int `json:"cast_id"`
-		Character   string
-		CreditID    string `json:"credit_id"`
-		ID          int
-		Name        string
-		Gender      int `json:"gender"`
-		Order       int
-		ProfilePath string `json:"profile_path"`
-	}
+		CastID      int    `json:"castId"`
+		Character   string `json:"character"`
+		CreditID    string `json:"creditId"`
+		ID          int    `json:"id"`
+		Name        string `json:"name"`
+		Gender      int    `json:"gender"`
+		Order       int    `json:"order"`
+		ProfilePath string `json:"profilePath"`
+	} `json:"cast"`
 	Crew []struct {
-		CreditID    string `json:"credit_id"`
-		Department  string
-		Gender      int `json:"gender"`
-		ID          int
-		Job         string
-		Name        string
-		ProfilePath string `json:"profile_path"`
-	}
-	AlternativeTitles *MovieAlternativeTitles `json:"alternative_titles,omitempty"`
-	Images            *MovieImages            `json:",omitempty"`
-	Keywords          *MovieKeywords          `json:",omitempty"`
-	Releases          *MovieReleases          `json:",omitempty"`
-	Videos            *MovieVideos            `json:",omitempty"`
-	Translations      *MovieTranslations      `json:",omitempty"`
-	Similar           *MoviePagedResults      `json:",omitempty"`
-	Reviews           *MovieReviews           `json:",omitempty"`
-	Lists             *MovieLists             `json:",omitempty"`
-	Changes           *MovieChanges           `json:",omitempty"`
-	Rating            *MovieRating            `json:",omitempty"`
+		CreditID    string `json:"creditId"`
+		Department  string `json:"department"`
+		Gender      int    `json:"gender"`
+		ID          int    `json:"id"`
+		Job         string `json:"job"`
+		Name        string `json:"name"`
+		ProfilePath string `json:"profilePath"`
+	} `json:"crew"`
+	AlternativeTitles *MovieAlternativeTitles `json:"alternativeTitles,omitempty"`
+	Images            *MovieImages            `json:"images,omitempty"`
+	Keywords          *MovieKeywords          `json:"keywords,omitempty"`
+	Releases          *MovieReleases          `json:"releases,omitempty"`
+	Videos            *MovieVideos            `json:"videos,omitempty"`
+	Translations      *MovieTranslations      `json:"translations,omitempty"`
+	Similar           *MoviePagedResults      `json:"similar,omitempty"`
+	Reviews           *MovieReviews           `json:"reviews,omitempty"`
+	Lists             *MovieLists             `json:"lists,omitempty"`
+	Changes           *MovieChanges           `json:"changes,omitempty"`
+	Rating            *MovieRating            `json:"rating,omitempty"`
 }
 
 // MovieExternalIds struct
 type MovieExternalIds struct {
-	ID          int
-	ImdbID      string `json:"imdb_id"`
-	FacebookID  string `json:"facebook_id"`
-	InstagramID string `json:"instagram_id"`
-	TwitterID   string `json:"twitter_id"`
+	ID          int    `json:"id"`
+	ImdbID      string `json:"imdbId"`
+	FacebookID  string `json:"facebookId"`
+	InstagramID string `json:"instagramId"`
+	TwitterID   string `json:"twitterId"`
 }
 
 // MovieImage struct
 type MovieImage struct {
-	FilePath    string `json:"file_path"`
-	Width       int
-	Height      int
-	Iso639_1    string  `json:"iso_639_1"`
-	AspectRatio float32 `json:"aspect_ratio"`
-	VoteAverage float32 `json:"vote_average"`
-	VoteCount   uint32  `json:"vote_count"`
+	FilePath    string  `json:"filePath"`
+	Width       int     `json:"width"`
+	Height      int     `json:"height"`
+	Iso639_1    string  `json:"iso6391"`
+	AspectRatio float32 `json:"aspectRatio"`
+	VoteAverage float32 `json:"voteAverage"`
+	VoteCount   uint32  `json:"voteCount"`
 }
 
 // MovieImages struct
 type MovieImages struct {
-	ID                int
-	Backdrops         []MovieImage
-	Posters           []MovieImage
-	Logos		  []MovieImage
-	AlternativeTitles *MovieAlternativeTitles `json:"alternative_titles,omitempty"`
-	Credits           *MovieCredits           `json:",omitempty"`
-	Keywords          *MovieKeywords          `json:",omitempty"`
-	Releases          *MovieReleases          `json:",omitempty"`
-	Videos            *MovieVideos            `json:",omitempty"`
-	Translations      *MovieTranslations      `json:",omitempty"`
-	Similar           *MoviePagedResults      `json:",omitempty"`
-	Reviews           *MovieReviews           `json:",omitempty"`
-	Lists             *MovieLists             `json:",omitempty"`
-	Changes           *MovieChanges           `json:",omitempty"`
-	Rating            *MovieRating            `json:",omitempty"`
+	ID                int             `json:"id"`
+	Backdrops         []MovieImage    `json:"backdrops"`
+	Posters           []MovieImage    `json:"posters"`
+	Logos             []MovieImage    `json:"logos"`
+	AlternativeTitles *MovieAlternativeTitles `json:"alternativeTitles,omitempty"`
+	Credits           *MovieCredits           `json:"credits,omitempty"`
+	Keywords          *MovieKeywords          `json:"keywords,omitempty"`
+	Releases          *MovieReleases          `json:"releases,omitempty"`
+	Videos            *MovieVideos            `json:"videos,omitempty"`
+	Translations      *MovieTranslations      `json:"translations,omitempty"`
+	Similar           *MoviePagedResults      `json:"similar,omitempty"`
+	Reviews           *MovieReviews           `json:"reviews,omitempty"`
+	Lists             *MovieLists             `json:"lists,omitempty"`
+	Changes           *MovieChanges           `json:"changes,omitempty"`
+	Rating            *MovieRating            `json:"rating,omitempty"`
 }
 
 // MovieKeywords struct
 type MovieKeywords struct {
-	ID       int
+	ID       int `json:"id"`
 	Keywords []struct {
-		ID   int
-		Name string
-	}
-	AlternativeTitles *MovieAlternativeTitles `json:"alternative_titles,omitempty"`
-	Credits           *MovieCredits           `json:",omitempty"`
-	Images            *MovieImages            `json:",omitempty"`
-	Releases          *MovieReleases          `json:",omitempty"`
-	Videos            *MovieVideos            `json:",omitempty"`
-	Translations      *MovieTranslations      `json:",omitempty"`
-	Similar           *MoviePagedResults      `json:",omitempty"`
-	Reviews           *MovieReviews           `json:",omitempty"`
-	Lists             *MovieLists             `json:",omitempty"`
-	Changes           *MovieChanges           `json:",omitempty"`
-	Rating            *MovieRating            `json:",omitempty"`
+		ID   int    `json:"id"`
+		Name string `json:"name"`
+	} `json:"keywords"`
+	AlternativeTitles *MovieAlternativeTitles `json:"alternativeTitles,omitempty"`
+	Credits           *MovieCredits           `json:"credits,omitempty"`
+	Images            *MovieImages            `json:"images,omitempty"`
+	Releases          *MovieReleases          `json:"releases,omitempty"`
+	Videos            *MovieVideos            `json:"videos,omitempty"`
+	Translations      *MovieTranslations      `json:"translations,omitempty"`
+	Similar           *MoviePagedResults      `json:"similar,omitempty"`
+	Reviews           *MovieReviews           `json:"reviews,omitempty"`
+	Lists             *MovieLists             `json:"lists,omitempty"`
+	Changes           *MovieChanges           `json:"changes,omitempty"`
+	Rating            *MovieRating            `json:"rating,omitempty"`
 }
 
 // MovieLists struct
 type MovieLists struct {
-	ID      int
-	Page    int
+	ID      int `json:"id"`
+	Page    int `json:"page"`
 	Results []struct {
-		Description   string
-		FavoriteCount int `json:"favorite_count"`
-		ID            string
-		ItemCount     int    `json:"item_count"`
-		Iso639_1      string `json:"iso_639_1"`
-		Name          string
-		PosterPath    string `json:"poster_path"`
-	}
-	TotalPages        int                     `json:"total_pages"`
-	TotalResults      int                     `json:"total_results"`
-	AlternativeTitles *MovieAlternativeTitles `json:"alternative_titles,omitempty"`
-	Credits           *MovieCredits           `json:",omitempty"`
-	Images            *MovieImages            `json:",omitempty"`
-	Keywords          *MovieKeywords          `json:",omitempty"`
-	Releases          *MovieReleases          `json:",omitempty"`
-	Videos            *MovieVideos            `json:",omitempty"`
-	Translations      *MovieTranslations      `json:",omitempty"`
-	Similar           *MoviePagedResults      `json:",omitempty"`
-	Reviews           *MovieReviews           `json:",omitempty"`
-	Changes           *MovieChanges           `json:",omitempty"`
-	Rating            *MovieRating            `json:",omitempty"`
+		Description   string `json:"description"`
+		FavoriteCount int    `json:"favoriteCount"`
+		ID            string `json:"id"`
+		ItemCount     int    `json:"itemCount"`
+		Iso639_1      string `json:"iso6391"`
+		Name          string `json:"name"`
+		PosterPath    string `json:"posterPath"`
+	} `json:"results"`
+	TotalPages        int `json:"totalPages"`
+	TotalResults      int `json:"totalResults"`
+	AlternativeTitles *MovieAlternativeTitles `json:"alternativeTitles,omitempty"`
+	Credits           *MovieCredits           `json:"credits,omitempty"`
+	Images            *MovieImages            `json:"images,omitempty"`
+	Keywords          *MovieKeywords          `json:"keywords,omitempty"`
+	Releases          *MovieReleases          `json:"releases,omitempty"`
+	Videos            *MovieVideos            `json:"videos,omitempty"`
+	Translations      *MovieTranslations      `json:"translations,omitempty"`
+	Similar           *MoviePagedResults      `json:"similar,omitempty"`
+	Reviews           *MovieReviews           `json:"reviews,omitempty"`
+	Changes           *MovieChanges           `json:"changes,omitempty"`
+	Rating            *MovieRating            `json:"rating,omitempty"`
 }
 
 // MovieRating struct
 type MovieRating struct {
-	StatusCode    int    `json:"status_code"`
-	StatusMessage string `json:"status_message"`
+	StatusCode    int    `json:"statusCode"`
+	StatusMessage string `json:"statusMessage"`
 }
 
 // MovieReleases struct
 type MovieReleases struct {
-	ID        int
+	ID        int `json:"id"`
 	Countries []struct {
-		Iso3166_1     string `json:"iso_3166_1"`
-		Certification string
-		ReleaseDate   string `json:"release_date"`
-	}
-	AlternativeTitles *MovieAlternativeTitles `json:"alternative_titles,omitempty"`
-	Credits           *MovieCredits           `json:",omitempty"`
-	Images            *MovieImages            `json:",omitempty"`
-	Keywords          *MovieKeywords          `json:",omitempty"`
-	Videos            *MovieVideos            `json:",omitempty"`
-	Translations      *MovieTranslations      `json:",omitempty"`
-	Similar           *MoviePagedResults      `json:",omitempty"`
-	Reviews           *MovieReviews           `json:",omitempty"`
-	Lists             *MovieLists             `json:",omitempty"`
-	Changes           *MovieChanges           `json:",omitempty"`
-	Rating            *MovieRating            `json:",omitempty"`
+		Iso3166_1     string `json:"iso31661"`
+		Certification string `json:"certification"`
+		ReleaseDate   string `json:"releaseDate"`
+	} `json:"countries"`
+	AlternativeTitles *MovieAlternativeTitles `json:"alternativeTitles,omitempty"`
+	Credits           *MovieCredits           `json:"credits,omitempty"`
+	Images            *MovieImages            `json:"images,omitempty"`
+	Keywords          *MovieKeywords          `json:"keywords,omitempty"`
+	Videos            *MovieVideos            `json:"videos,omitempty"`
+	Translations      *MovieTranslations      `json:"translations,omitempty"`
+	Similar           *MoviePagedResults      `json:"similar,omitempty"`
+	Reviews           *MovieReviews           `json:"reviews,omitempty"`
+	Lists             *MovieLists             `json:"lists,omitempty"`
+	Changes           *MovieChanges           `json:"changes,omitempty"`
+	Rating            *MovieRating            `json:"rating,omitempty"`
 }
 
 // MovieReviews struct
 type MovieReviews struct {
-	ID      int
-	Page    int
+	ID      int `json:"id"`
+	Page    int `json:"page"`
 	Results []struct {
-		ID      string
-		Author  string
-		Content string
-		URL     string
-	}
-	TotalPages        int                     `json:"total_pages"`
-	TotalResults      int                     `json:"total_results"`
-	AlternativeTitles *MovieAlternativeTitles `json:"alternative_titles,omitempty"`
-	Credits           *MovieCredits           `json:",omitempty"`
-	Images            *MovieImages            `json:",omitempty"`
-	Keywords          *MovieKeywords          `json:",omitempty"`
-	Releases          *MovieReleases          `json:",omitempty"`
-	Videos            *MovieVideos            `json:",omitempty"`
-	Translations      *MovieTranslations      `json:",omitempty"`
-	Similar           *MoviePagedResults      `json:",omitempty"`
-	Lists             *MovieLists             `json:",omitempty"`
-	Changes           *MovieChanges           `json:",omitempty"`
-	Rating            *MovieRating            `json:",omitempty"`
+		ID      string `json:"id"`
+		Author  string `json:"author"`
+		Content string `json:"content"`
+		URL     string `json:"url"`
+	} `json:"results"`
+	TotalPages        int `json:"totalPages"`
+	TotalResults      int `json:"totalResults"`
+	AlternativeTitles *MovieAlternativeTitles `json:"alternativeTitles,omitempty"`
+	Credits           *MovieCredits           `json:"credits,omitempty"`
+	Images            *MovieImages            `json:"images,omitempty"`
+	Keywords          *MovieKeywords          `json:"keywords,omitempty"`
+	Releases          *MovieReleases          `json:"releases,omitempty"`
+	Videos            *MovieVideos            `json:"videos,omitempty"`
+	Translations      *MovieTranslations      `json:"translations,omitempty"`
+	Similar           *MoviePagedResults      `json:"similar,omitempty"`
+	Lists             *MovieLists             `json:"lists,omitempty"`
+	Changes           *MovieChanges           `json:"changes,omitempty"`
+	Rating            *MovieRating            `json:"rating,omitempty"`
 }
 
 // MovieTranslations struct
 type MovieTranslations struct {
-	ID           int
+	ID           int `json:"id"`
 	Translations []struct {
-		Iso3166_1   string `json:"iso_3166_1"`
-		Iso639_1    string `json:"iso_639_1"`
+		Iso3166_1   string `json:"iso31661"`
+		Iso639_1    string `json:"iso6391"`
 		Name        string `json:"name"`
-		EnglishName string `json:"english_name"`
+		EnglishName string `json:"englishName"`
 		Data        struct {
 			Title    string `json:"title,omitempty"`
 			Overview string `json:"overview,omitempty"`
 			Homepage string `json:"homepage,omitempty"`
 		} `json:"data"`
-	}
-	AlternativeTitles *MovieAlternativeTitles `json:"alternative_titles,omitempty"`
-	Credits           *MovieCredits           `json:",omitempty"`
-	Images            *MovieImages            `json:",omitempty"`
-	Keywords          *MovieKeywords          `json:",omitempty"`
-	Releases          *MovieReleases          `json:",omitempty"`
-	Videos            *MovieVideos            `json:",omitempty"`
-	Similar           *MoviePagedResults      `json:",omitempty"`
-	Reviews           *MovieReviews           `json:",omitempty"`
-	Lists             *MovieLists             `json:",omitempty"`
-	Changes           *MovieChanges           `json:",omitempty"`
-	Rating            *MovieRating            `json:",omitempty"`
+	} `json:"translations"`
+	AlternativeTitles *MovieAlternativeTitles `json:"alternativeTitles,omitempty"`
+	Credits           *MovieCredits           `json:"credits,omitempty"`
+	Images            *MovieImages            `json:"images,omitempty"`
+	Keywords          *MovieKeywords          `json:"keywords,omitempty"`
+	Releases          *MovieReleases          `json:"releases,omitempty"`
+	Videos            *MovieVideos            `json:"videos,omitempty"`
+	Similar           *MoviePagedResults      `json:"similar,omitempty"`
+	Reviews           *MovieReviews           `json:"reviews,omitempty"`
+	Lists             *MovieLists             `json:"lists,omitempty"`
+	Changes           *MovieChanges           `json:"changes,omitempty"`
+	Rating            *MovieRating            `json:"rating,omitempty"`
 }
 
-// MovieRecommendations struct for movie recommendations.
+// MovieRecommendations struct
 type MovieRecommendations struct {
 	Page    int `json:"page"`
 	Results []struct {
 		Adult            bool    `json:"adult"`
-		BackdropPath     string  `json:"backdrop_path"`
-		GenreIDs         []int   `json:"genre_ids"`
+		BackdropPath     string  `json:"backdropPath"`
+		GenreIDs         []int   `json:"genreIds"`
 		ID               int     `json:"id"`
-		OriginalLanguage string  `json:"original_language"`
-		OriginalTitle    string  `json:"original_title"`
+		OriginalLanguage string  `json:"originalLanguage"`
+		OriginalTitle    string  `json:"originalTitle"`
 		Overview         string  `json:"overview"`
-		ReleaseDate      string  `json:"release_date"`
-		PosterPath       string  `json:"poster_path"`
+		ReleaseDate      string  `json:"releaseDate"`
+		PosterPath       string  `json:"posterPath"`
 		Popularity       float32 `json:"popularity"`
 		Title            string  `json:"title"`
 		Video            bool    `json:"video"`
-		VoteAverage      float32 `json:"vote_average"`
-		VoteCount        uint32  `json:"vote_count"`
+		VoteAverage      float32 `json:"voteAverage"`
+		VoteCount        uint32  `json:"voteCount"`
 	} `json:"results"`
-	TotalPages   int `json:"total_pages"`
-	TotalResults int `json:"total_results"`
+	TotalPages   int `json:"totalPages"`
+	TotalResults int `json:"totalResults"`
 }
 
 // MovieVideos struct
 type MovieVideos struct {
-	ID      int
+	ID      int `json:"id"`
 	Results []struct {
-		ID       string
-		Iso639_1 string `json:"iso_639_1"`
-		Key      string
-		Name     string
-		Site     string
-		Size     int
-		Type     string
-	}
-	AlternativeTitles *MovieAlternativeTitles `json:"alternative_titles,omitempty"`
-	Credits           *MovieCredits           `json:",omitempty"`
-	Images            *MovieImages            `json:",omitempty"`
-	Keywords          *MovieKeywords          `json:",omitempty"`
-	Releases          *MovieReleases          `json:",omitempty"`
-	Translations      *MovieTranslations      `json:",omitempty"`
-	Similar           *MoviePagedResults      `json:",omitempty"`
-	Reviews           *MovieReviews           `json:",omitempty"`
-	Lists             *MovieLists             `json:",omitempty"`
-	Changes           *MovieChanges           `json:",omitempty"`
-	Rating            *MovieRating            `json:",omitempty"`
+		ID       string `json:"id"`
+		Iso639_1 string `json:"iso6391"`
+		Key      string `json:"key"`
+		Name     string `json:"name"`
+		Site     string `json:"site"`
+		Size     int    `json:"size"`
+		Type     string `json:"type"`
+	} `json:"results"`
+	AlternativeTitles *MovieAlternativeTitles `json:"alternativeTitles,omitempty"`
+	Credits           *MovieCredits           `json:"credits,omitempty"`
+	Images            *MovieImages            `json:"images,omitempty"`
+	Keywords          *MovieKeywords          `json:"keywords,omitempty"`
+	Releases          *MovieReleases          `json:"releases,omitempty"`
+	Translations      *MovieTranslations      `json:"translations,omitempty"`
+	Similar           *MoviePagedResults      `json:"similar,omitempty"`
+	Reviews           *MovieReviews           `json:"reviews,omitempty"`
+	Lists             *MovieLists             `json:"lists,omitempty"`
+	Changes           *MovieChanges           `json:"changes,omitempty"`
+	Rating            *MovieRating            `json:"rating,omitempty"`
 }
+
 
 // GetMovieInfo for a specific movie id
 // https://developers.themoviedb.org/3/movies/get-movie-details
